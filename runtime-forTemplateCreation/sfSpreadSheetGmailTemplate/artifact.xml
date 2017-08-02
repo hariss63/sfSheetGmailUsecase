@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="sfGmailSpreadsheet" groupId="com.example.sfSpreadSheetGmailTemplate.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/sfGmailSpreadsheet.xml</file>
+    </artifact>
+    <artifact name="sf_config" groupId="com.example.sfSpreadSheetGmailTemplate.local-entry" version="1.0.0" type="synapse/local-entry" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/local-entries/sf_config.xml</file>
+    </artifact>
+    <artifact name="spreadsheet_config" groupId="com.example.sfSpreadSheetGmailTemplate.local-entry" version="1.0.0" type="synapse/local-entry" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/local-entries/spreadsheet_config.xml</file>
+    </artifact>
+    <artifact name="gmail_config" groupId="com.example.sfSpreadSheetGmailTemplate.local-entry" version="1.0.0" type="synapse/local-entry" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/local-entries/gmail_config.xml</file>
+    </artifact>
+</artifacts>

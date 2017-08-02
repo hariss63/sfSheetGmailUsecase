@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<localEntry key="sheetConfig" xmlns="http://ws.apache.org/ns/synapse">
+    <googlespreadsheet.init>
+        <accessToken>ya29.GluUBN0AOPEeRKY7DGWKApwhyOF4IxQnxlihEf6lH0Gqfiy5jDw7bvI_zpcGU45Pma7vur24o1wjOKMIwCzw4h9UH6alt6vCzH7eZJ0N0cTXIM5tMm60Gu7rJlUJ</accessToken>
+        <clientId>207142919698-eoe35slv7843tsunea5he8kebh21e69u.apps.googleusercontent.com</clientId>
+        <clientSecret>3xc67dAWbAah4BGalxrQTwms</clientSecret>
+        <refreshToken>1/9l1XZ16m2t7-5qtU5OXrX8zvgMyKg1wqv4DtAgfyAKE</refreshToken>
+        <apiUrl>https://sheets.googleapis.com/v4/spreadsheets</apiUrl>
+    </googlespreadsheet.init>
+</localEntry>

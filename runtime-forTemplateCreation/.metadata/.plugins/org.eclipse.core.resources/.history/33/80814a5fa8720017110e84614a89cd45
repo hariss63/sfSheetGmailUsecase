@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="sfGsGmail" xmlns="http://ws.apache.org/ns/synapse">
+    <sequence>
+        <salesforce.init>
+            <username>tharis63@outlook.com</username>
+            <password>wso21234563ZCEy8Ln5P6cX7Q8kcn76lPg</password>
+        </salesforce.init>
+        <salesforce.create/>
+    </sequence>
+</template>

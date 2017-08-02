@@ -1,0 +1,5 @@
+1501145302336	Delete resource 'sfSpreadSheetGmailTemplate/src/main/synapse-config/tasks/sfDSpreadGmail.xml'
+1501145313694	Delete resource 'sfSpreadSheetGmailTemplate/src/main/synapse-config/templates/sfGsGmail.xml'
+1501157472291	Delete resource 'sfSpreadSheetGmailTemplate/src/main/synapse-config/local-entries/gmailConfig.xml'
+1501157481102	Delete resource 'sfSpreadSheetGmailTemplate/src/main/synapse-config/local-entries/sfConfig.xml'
+1501157488293	Delete resource 'sfSpreadSheetGmailTemplate/src/main/synapse-config/local-entries/sheetConfig.xml'

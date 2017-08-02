@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<localEntry xmlns="http://ws.apache.org/ns/synapse" key="sfConfig"><salesforce.init xmlns="http://ws.apache.org/ns/synapse">
+      <username>tharis63@outlook.com</username>
+      <password>wso21234560bZtypJjfPEU4w93gtdaiDsv</password>
+      <loginUrl>https://login.salesforce.com/services/Soap/u/37.0</loginUrl>
+      <blocking>false</blocking>
+   </salesforce.init></localEntry>

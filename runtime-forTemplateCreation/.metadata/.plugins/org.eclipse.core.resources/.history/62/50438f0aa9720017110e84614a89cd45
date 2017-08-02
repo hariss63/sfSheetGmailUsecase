@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<localEntry xmlns="http://ws.apache.org/ns/synapse" key="gmailConfig">         <gmail.init>
+            <userId>tharis63@gmail.com</userId>
+            <refreshToken>1/AXXuBSzhR90-w1daR7GOuLhy8-FBLtkz7xiHM7H06Qo</refreshToken>
+            <clientSecret>qlCLwJN9mBxStMmP0iw8s9i2</clientSecret>
+            <clientId>592473284170-upbhlaj85i46llqjdo7evm4628v9a6qs.apps.googleusercontent.com</clientId>
+            <accessToken>ya29.GluUBFt9AAMvncthaRJOdcYDF3GgOwLFy89_T9oRBvicEZaAYWmBlA0G8jr8WUz6PI9O51gGCHSXzxZFsEKPeAxCwWQagcOUlwJBJrpqk7kgVrfrmx_sM34PsySi</accessToken>
+            <apiUrl>https://www.googleapis.com/gmail</apiUrl>
+         </gmail.init></localEntry>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="sfGmailSpreadsheet" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <inSequence>
+            <property expression="json-eval($.salesforceLeadFirstname)" name="salesforcesoap.lead.firstname" scope="default" type="STRING"/>
+            <property expression="json-eval($.salesforceLeadLastName)" name="salesforcesoap.lead.lastname" scope="default" type="STRING"/>
+            <property expression="json-eval($.salesforceLeadEmail)" name="salesforcesoap.lead.email" scope="default" type="STRING"/>
+            <property expression="json-eval($.salesforceLeadCompany)" name="salesforcesoap.lead.company" scope="default" type="STRING"/>
+            <property expression="json-eval($.spreadsheetId)" name="spreadsheet.lead.spreadsheetId" scope="default" type="STRING"/>
+            <property expression="json-eval($.spreadsheetRange)" name="spreadsheet.lead.spreadsheetRange" scope="default" type="STRING"/>
+            <property expression="json-eval($.gmailUserId)" name="gmail.lead.userId" scope="default" type="STRING"/>
+            <property expression="json-eval($.gmailRefreshToken)" name="gmail.lead.refreshToken" scope="default" type="STRING"/>
+            <property expression="json-eval($.gmailClientSecret)" name="gmail.lead.clientSecret" scope="default" type="STRING"/>
+            <property expression="json-eval($.gmailClientId)" name="gmail.lead.clientId" scope="default" type="STRING"/>
+            <property expression="json-eval($.gmailAccessToken)" name="gmail.lead.accessToken" scope="default" type="STRING"/>
+            <property expression="json-eval($.gmailApiUrl)" name="gmail.lead.apiUrl" scope="default" type="STRING"/>
+            <property expression="json-eval($.gmailManagerEmailId)" name="gmail.lead.managerEmailId" scope="default" type="STRING"/>
+            <payloadFactory media-type="xml">
+                <format>
+                    <sfdc:sObjects type="Lead" xmlns:sfdc="sfdc">
+                        <sfdc:sObject>
+                            <sfdc:FirstName>$1</sfdc:FirstName>
+                            <sfdc:LastName>$2</sfdc:LastName>
+                            <sfdc:Email>$3</sfdc:Email>
+                            <sfdc:Company>$4</sfdc:Company>
+                        </sfdc:sObject>
+                    </sfdc:sObjects>
+                </format>
+                <args>
+                    <arg evaluator="xml" expression="$ctx:salesforcesoap.lead.firstname"/>
+                    <arg evaluator="xml" expression="$ctx:salesforcesoap.lead.lastname"/>
+                    <arg evaluator="xml" expression="$ctx:salesforcesoap.lead.email"/>
+                    <arg evaluator="xml" expression="$ctx:salesforcesoap.lead.company"/>
+                </args>
+            </payloadFactory>
+            <salesforce.create configKey="sfConfig">
+                <allOrNone>0</allOrNone>
+                <allowFieldTruncate>0</allowFieldTruncate>
+                <sobjects xmlns:sfdc="sfdc">{//sfdc:sObjects}</sobjects>
+            </salesforce.create>
+            <payloadFactory media-type="xml">
+                <format>
+                    <sfdc:sObject xmlns:sfdc="sfdc">
+                        <sfdc:Ids>$1</sfdc:Ids>
+                    </sfdc:sObject>
+                </format>
+                <args>
+                    <arg evaluator="xml" expression="//ns:createResponse/ns:result/ns:id/text()" xmlns:ns="urn:partner.soap.sforce.com"/>
+                </args>
+            </payloadFactory>
+            <salesforce.retrieve configKey="sfConfig">
+                <fieldList>FirstName,LastName,Email</fieldList>
+                <objectType>Lead</objectType>
+                <objectIDS xmlns:sfdc="sfdc">{//sfdc:sObject}</objectIDS>
+            </salesforce.retrieve>
+            <property expression="//ns:retrieveResponse/ns:result/urn:Email/text()" name="salesforce.lead.email" scope="default" type="STRING" xmlns:ns="urn:partner.soap.sforce.com" xmlns:urn="urn:sobject.partner.soap.sforce.com"/>
+            <property expression="//ns:retrieveResponse/ns:result/urn:Id/text()" name="salesforce.lead.id" scope="default" type="STRING" xmlns:ns="urn:partner.soap.sforce.com" xmlns:urn="urn:sobject.partner.soap.sforce.com"/>
+            <property expression="//ns:retrieveResponse/ns:result/urn:FirstName/text()" name="salesforce.lead.firstname" scope="default" type="STRING" xmlns:ns="urn:partner.soap.sforce.com" xmlns:urn="urn:sobject.partner.soap.sforce.com"/>
+            <property expression="//ns:retrieveResponse/ns:result/urn:LastName/text()" name="salesforce.lead.lastname" scope="default" type="STRING" xmlns:ns="urn:partner.soap.sforce.com" xmlns:urn="urn:sobject.partner.soap.sforce.com"/>
+            <log level="custom">
+                <property expression="//ns:retrieveResponse/ns:result/urn:Email/text()" name="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" xmlns:ns="urn:partner.soap.sforce.com" xmlns:urn="urn:sobject.partner.soap.sforce.com"/>
+            </log>
+            <log level="custom">
+                <property expression="//ns:retrieveResponse/ns:result/urn:Id/text()" name="YYYYYYYYYYYYYYYYYYYYYYYYYY" xmlns:ns="urn:partner.soap.sforce.com" xmlns:urn="urn:sobject.partner.soap.sforce.com"/>
+            </log>
+            <log level="custom">
+                <property expression="//ns:retrieveResponse/ns:result/urn:FirstName/text()" name="ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ" xmlns:ns="urn:partner.soap.sforce.com" xmlns:urn="urn:sobject.partner.soap.sforce.com"/>
+            </log>
+            <log level="custom">
+                <property expression="//ns:retrieveResponse/ns:result/urn:LastName/text()" name="AAAAAAAAAAAAAAAAAAAAAAAAAAAAA" xmlns:ns="urn:partner.soap.sforce.com" xmlns:urn="urn:sobject.partner.soap.sforce.com"/>
+            </log>
+            <script language="js"><![CDATA[var mail = mc.getProperty("salesforce.lead.email");
+			    var id = mc.getProperty("salesforce.lead.id");
+			    var fname = mc.getProperty("salesforce.lead.firstname");
+			    var lname = mc.getProperty("salesforce.lead.lastname");                           
+                          
+                            print("Time Duration :  " + id + " ms ");
+                            var fields = "[[";                         
+                            
+                            if(mail !="" && mail !=null && id !="" && id !=null && fname !="" && fname !=null && lname !="" && lname !=null){
+                                    fields = fields.concat('"' + mail + '","' + id + '","' + fname + '","' + lname + '"');
+                            }
+                            fields = fields.concat("]]");
+                            mc.setProperty("spreadsheet.lead.raw",fields);]]></script>
+            <log level="custom">
+                <property expression="get-property('spreadsheet.lead.raw')" name="SSSSSSSSSSSSSSSSSSSSSSSSGHHHHHHHHHHHHHHHHHEEEEEEEEEEEE"/>
+            </log>
+            <googlespreadsheet.addRowsColumnsData configKey="sheetConfig">
+                <spreadsheetId>{$ctx:spreadsheet.lead.spreadsheetId}</spreadsheetId>
+                <range>{$ctx:spreadsheet.lead.spreadsheetRange}</range>
+                <valueInputOption>RAW</valueInputOption>
+                <values>{$ctx:spreadsheet.lead.raw}</values>
+            </googlespreadsheet.addRowsColumnsData>
+            <property expression="json-eval($.updates.updatedRange)" name="spreadsheet.lead.updatedRange" scope="default" type="STRING"/>
+            <log level="custom">
+                <property expression="json-eval($.updates.updatedRange)" name="RRRRRRRRRAAAAAAANGGGGGGGGGG"/>
+            </log>
+            <googlespreadsheet.getCellData configKey="sheetConfig">
+                <spreadsheetId>{$ctx:spreadsheet.lead.spreadsheetId}</spreadsheetId>
+                <range>{$ctx:spreadsheet.lead.updatedRange}</range>
+            </googlespreadsheet.getCellData>
+            <property expression="json-eval($.values[0][0])" name="spreadsheet.lead.mailId" scope="default" type="STRING"/>
+            <property expression="json-eval($.values[0][1])" name="spreadsheet.lead.sfId" scope="default" type="STRING"/>
+            <property expression="json-eval($.values[0][2])" name="spreadsheet.lead.firstName" scope="default" type="STRING"/>
+            <property expression="json-eval($.values[0][3])" name="spreadsheet.lead.lastName" scope="default" type="STRING"/>
+            <log level="custom">
+                <property expression="json-eval($.values[0][0])" name="namesssssssssssssssssssssssssssssssssssss"/>
+            </log>
+            <script language="js"><![CDATA[var mail = mc.getProperty("spreadsheet.lead.mailId");
+			    var id = mc.getProperty("spreadsheet.lead.sfId");
+			    var fname = mc.getProperty("spreadsheet.lead.firstName");
+			    var lname = mc.getProperty("spreadsheet.lead.lastName");                           
+                          
+                            print("Time Duration :  " + id + " ms ");
+                            var contentType = "The New Lead Registration detail is: \n"                         
+                            
+                            if(mail !="" && mail !=null && id !="" && id !=null && fname !="" && fname !=null && lname !="" && lname !=null){
+                                    contentType = contentType.concat('"The Email Id is: ' + mail + '\n","The Salesforce Id is: ' + id + '\n","The Firstname is: ' + fname + '\n","The Lastname is: ' + lname + '"');
+                            }
+                            
+                            mc.setProperty("gmail.lead.contentBody",contentType);]]></script>
+            <gmail.sendMail configKey="gmailConfig">
+                <to>{$ctx:gmail.lead.managerEmailId}</to>
+                <subject>New Lead Registration</subject>
+                <from>{$ctx:gmail.lead.userId}</from>
+                <messageBody>{$ctx:gmail.lead.contentBody}</messageBody>
+                <contentType>text/html; charset=UTF-8</contentType>
+            </gmail.sendMail>
+            <send/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </target>
+</proxy>

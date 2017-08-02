@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><artifacts>
-    <artifact name="sfGmailSpreadsheet" groupId="com.example.sfSpreadSheetGmailTemplate.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/proxy-services/sfGmailSpreadsheet.xml</file>
-    </artifact>
-</artifacts>
